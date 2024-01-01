@@ -1,5 +1,11 @@
 # Sole&Ankle — Module 4 workshop
 
+<p>
+  <strong>
+    This repository is a clone of https://github.com/css-for-js/sole-and-ankle
+  </strong>
+</p>
+
 In this workshop, our goal is to finish building an e-commerce store!
 
 The good news is, most of our work is done already. We just need to write some additional CSS to construct the layout; things are a bit messy right now!
