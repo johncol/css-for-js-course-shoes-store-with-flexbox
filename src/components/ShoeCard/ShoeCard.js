@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import { formatPrice, pluralize, isNewShoe } from '../../utils';
-import Spacer from '../Spacer';
+import { COLORS, WEIGHTS } from "../../constants";
+import { formatPrice, pluralize, isNewShoe } from "../../utils";
+import Spacer from "../Spacer";
 
 const ShoeCard = ({
   slug,
@@ -31,7 +31,9 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
-  const isOnSale = variant === 'on-sale';
+  const isOnSale = variant === "on-sale";
+  const isNewRelease = variant === "new-release";
+  const shouldDisplayTag = isOnSale || isNewRelease;
 
   return (
     <Link href={`/shoe/${slug}`}>
@@ -45,9 +47,14 @@ const ShoeCard = ({
           <Price isOnSale={isOnSale}>{formatPrice(price)}</Price>
         </Row>
         <Row>
-          <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          <ColorInfo>{pluralize("Color", numOfColors)}</ColorInfo>
           {isOnSale && <SalePrice>{formatPrice(salePrice)}</SalePrice>}
         </Row>
+        {shouldDisplayTag && (
+          <ItemTag isOnSale={isOnSale} isNewRelease={isNewRelease}>
+            {isOnSale ? "Sale" : "Just Released!"}
+          </ItemTag>
+        )}
       </Wrapper>
     </Link>
   );
@@ -60,11 +67,11 @@ const Link = styled.a`
 `;
 
 const Wrapper = styled.article`
+  position: relative;
 `;
 
 const ImageWrapper = styled.div`
   position: relative;
-  
 `;
 
 const Image = styled.img`
@@ -83,8 +90,8 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span`
-  text-decoration: ${props => props.isOnSale ? 'line-through' : 'none'};
-  color: ${props => props.isOnSale ? COLORS.gray[700] : COLORS.gray[900]};
+  text-decoration: ${(props) => (props.isOnSale ? "line-through" : "none")};
+  color: ${(props) => (props.isOnSale ? COLORS.gray[700] : COLORS.gray[900])};
 `;
 
 const ColorInfo = styled.p`
@@ -94,6 +101,27 @@ const ColorInfo = styled.p`
 const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.primary};
+`;
+
+const ItemTag = styled.div`
+  position: absolute;
+  right: -4px;
+  top: 12px;
+  font-size: 14px;
+  line-height: 32px;
+  padding: 0 10px;
+
+  font-weight: ${WEIGHTS.bold};
+  color: ${COLORS.white};
+  background-color: ${(props) => {
+    if (props.isOnSale) {
+      return COLORS.primary;
+    }
+    if (props.isNewRelease) {
+      return COLORS.secondary;
+    }
+    return COLORS.gray[700];
+  }};
 `;
 
 export default ShoeCard;
