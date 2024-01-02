@@ -31,6 +31,8 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
+  const isOnSale = variant === 'on-sale';
+
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
@@ -40,10 +42,11 @@ const ShoeCard = ({
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <Price isOnSale={isOnSale}>{formatPrice(price)}</Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          {isOnSale && <SalePrice>{formatPrice(salePrice)}</SalePrice>}
         </Row>
       </Wrapper>
     </Link>
@@ -70,6 +73,8 @@ const Image = styled.img`
 
 const Row = styled.div`
   font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Name = styled.h3`
@@ -77,7 +82,10 @@ const Name = styled.h3`
   color: ${COLORS.gray[900]};
 `;
 
-const Price = styled.span``;
+const Price = styled.span`
+  text-decoration: ${props => props.isOnSale ? 'line-through' : 'none'};
+  color: ${props => props.isOnSale ? COLORS.gray[700] : COLORS.gray[900]};
+`;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};
