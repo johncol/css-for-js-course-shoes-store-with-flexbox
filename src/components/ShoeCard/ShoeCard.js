@@ -76,6 +76,7 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
   width: 100%;
+  border-radius: 5px;
 `;
 
 const Row = styled.div`
@@ -110,6 +111,7 @@ const ItemTag = styled.div`
   font-size: 14px;
   line-height: 32px;
   padding: 0 10px;
+  border-radius: 2px;
 
   font-weight: ${WEIGHTS.bold};
   color: ${COLORS.white};
