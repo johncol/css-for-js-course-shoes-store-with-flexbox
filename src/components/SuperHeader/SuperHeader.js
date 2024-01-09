@@ -30,6 +30,10 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 16px;
   padding: 8px 32px;
+
+  @media ${props => props.theme.queries.mobile} {
+    display: none;
+  }
 `;
 
 const MarketingMessage = styled.span`
