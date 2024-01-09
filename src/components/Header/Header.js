@@ -1,20 +1,21 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
+import { COLORS, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import SuperHeader from "../SuperHeader";
+import QuickActionsBar from "../QuickActionsBar";
 
 const Header = () => {
   // Our site features two visual headers, but they should be
   // grouped semantically as a single header.
   return (
-    <header>
+    <HeaderSection>
       <SuperHeader />
       <MainHeader>
-        <LogoWrapper>
+        <EqualHorizontalSpacer>
           <Logo />
-        </LogoWrapper>
+        </EqualHorizontalSpacer>
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -23,10 +24,19 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+        <EqualHorizontalSpacer>
+          <QuickActionsBar />
+        </EqualHorizontalSpacer>
       </MainHeader>
-    </header>
+    </HeaderSection>
   );
 };
+
+const HeaderSection = styled.header`
+  @media ${(props) => props.theme.queries.tableAndBelow} {
+    border-top: 4px solid ${COLORS.gray[900]};
+  }
+`;
 
 const MainHeader = styled.div`
   padding: 0 32px;
@@ -36,19 +46,25 @@ const MainHeader = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media ${props => props.theme.queries.mobile} {
+    padding: 0 16px;
+  }
 `;
 
-const LogoWrapper = styled.div`
-  position: absolute;
-  left: 0;
-  margin-left: 32px;
+const EqualHorizontalSpacer = styled.div`
+  flex: 1 1 0;
 `;
 
 const Nav = styled.nav`
   display: flex;
   justify-content: center;
   gap: 0 3vw;
-  padding: 26px 0;
+  padding: 26px 16px;
+
+  @media ${(props) => props.theme.queries.tabletAndBelow} {
+    /* temporarily hide nav in tabletAndBelow */
+    display: none;
+  }
 `;
 
 const NavLink = styled.a`
