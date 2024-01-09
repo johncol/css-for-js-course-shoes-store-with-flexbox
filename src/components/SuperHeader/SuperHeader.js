@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   gap: 16px;
   padding: 8px 32px;
 
-  @media ${props => props.theme.queries.tableAndBelow} {
+  @media ${props => props.theme.queries.tabletAndBelow} {
     display: none;
   }
 `;

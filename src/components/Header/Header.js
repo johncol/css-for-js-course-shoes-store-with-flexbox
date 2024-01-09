@@ -33,7 +33,7 @@ const Header = () => {
 };
 
 const HeaderSection = styled.header`
-  @media ${(props) => props.theme.queries.tableAndBelow} {
+  @media ${(props) => props.theme.queries.tabletAndBelow} {
     border-top: 4px solid ${COLORS.gray[900]};
   }
 `;
