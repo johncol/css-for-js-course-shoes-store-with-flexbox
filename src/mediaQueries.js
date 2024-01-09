@@ -12,6 +12,7 @@ export const mediaQueries = {
     breakpoints.mobile + 1
   )}) and (max-width: ${toRems(breakpoints.tablet)})`,
   desktop: `(min-width: ${toRems(breakpoints.tablet + 1)})`,
+  tabletAndBelow: `(max-width: ${toRems(breakpoints.tablet)})`,
 };
 
 console.log('mediaQueries:', mediaQueries);
