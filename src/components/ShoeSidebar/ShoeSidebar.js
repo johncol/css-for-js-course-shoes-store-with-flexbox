@@ -1,40 +1,49 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
+import { COLORS, WEIGHTS } from "../../constants";
 
-const Sidebar = () => {
+const links = [
+  { route: "lifestyle", label: "Lifestyle" },
+  { route: "jordan", label: "Jordan" },
+  { route: "running", label: "Running" },
+  { route: "basketball", label: "Basketball" },
+  { route: "training", label: "Training &amp; Gym" },
+  { route: "football", label: "Football" },
+  { route: "skateboarding", label: "Skateboarding" },
+  { route: "us-football", label: "American Football" },
+  { route: "baseball", label: "Baseball" },
+  { route: "golf", label: "Golf" },
+  { route: "tennis", label: "Tennis" },
+  { route: "athletics", label: "Athletics" },
+  { route: "walking", label: "Walking" },
+];
+
+const Sidebar = ({ activeCategory }) => {
   return (
     <Wrapper>
-      <Link href="/lifestyle">Lifestyle</Link>
-      <Link href="/jordan">Jordan</Link>
-      <ActiveLink href="/running">Running</ActiveLink>
-      <Link href="/basketball">Basketball</Link>
-      <Link href="/training">Training &amp; Gym</Link>
-      <Link href="/football">Football</Link>
-      <Link href="/skateboarding">Skateboarding</Link>
-      <Link href="/us-football">American Football</Link>
-      <Link href="/baseball">Baseball</Link>
-      <Link href="/golf">Golf</Link>
-      <Link href="/tennis">Tennis</Link>
-      <Link href="/athletics">Athletics</Link>
-      <Link href="/walking">Walking</Link>
+      {links.map((link) => (
+        <Link
+          active={activeCategory === link.route}
+          href={`/${link.route}`}
+          key={link.route}
+        >
+          {link.label}
+        </Link>
+      ))}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.aside``;
+const Wrapper = styled.aside`
+`;
 
 const Link = styled.a`
   display: block;
   text-decoration: none;
   font-weight: ${WEIGHTS.medium};
-  color: ${COLORS.gray[900]};
   line-height: 2;
-`;
-
-const ActiveLink = styled(Link)`
-  color: ${COLORS.primary};
+  color: ${(props) => (props.active ? COLORS.primary : COLORS.gray[900])};
 `;
 
 export default Sidebar;
