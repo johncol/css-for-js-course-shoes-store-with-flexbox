@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Icon from "../Icon";
 
-export const QuickActionsBar = () => {
+export const QuickActionsBar = ({ onClickOnMenu }) => {
   return (
     <ActionsList>
       <Action>
@@ -10,7 +10,7 @@ export const QuickActionsBar = () => {
       <Action>
         <StyledIcon id={"search"} />
       </Action>
-      <Action>
+      <Action onClick={onClickOnMenu}>
         <StyledIcon id={"menu"} />
       </Action>
     </ActionsList>

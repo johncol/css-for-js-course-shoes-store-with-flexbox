@@ -5,6 +5,7 @@ import {
   Menu,
   ShoppingBag,
   ChevronDown,
+  X,
 } from 'react-feather';
 
 const icons = {
@@ -12,6 +13,7 @@ const icons = {
   menu: Menu,
   'shopping-bag': ShoppingBag,
   'chevron-down': ChevronDown,
+  close: X,
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }) => {

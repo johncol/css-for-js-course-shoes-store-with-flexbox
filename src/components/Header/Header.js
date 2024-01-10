@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
 
 import { COLORS } from "../../constants";
@@ -7,19 +7,21 @@ import Navigation from "../Navigation";
 import QuickActionsBar from "../QuickActionsBar";
 import SuperHeader from "../SuperHeader";
 
-const Header = () => {
-  // Our site features two visual headers, but they should be
-  // grouped semantically as a single header.
+const Header = ({ className }) => {
+  const [menuOpenInMobile, setMenuOpenInMobile] = useState(false);
   return (
-    <HeaderSection>
+    <HeaderSection className={className}>
       <SuperHeader />
       <MainHeader>
         <EqualHorizontalSpacer>
           <Logo />
         </EqualHorizontalSpacer>
-        <Navigation />
+        <Navigation
+          menuOpenInMobile={menuOpenInMobile}
+          onClose={() => setMenuOpenInMobile(false)}
+        />
         <EqualHorizontalSpacer>
-          <QuickActionsBar />
+          <QuickActionsBar onClickOnMenu={() => setMenuOpenInMobile(true)} />
         </EqualHorizontalSpacer>
       </MainHeader>
     </HeaderSection>
