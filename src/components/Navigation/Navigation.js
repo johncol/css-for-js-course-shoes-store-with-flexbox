@@ -109,7 +109,7 @@ const CloseButton = styled(Icon).attrs({ id: "close" })`
 const Nav = styled.nav`
   display: flex;
   justify-content: center;
-  gap: 0 3vw;
+  gap: 0 clamp(0.5rem, 3vw, 3rem);
   padding: 26px 16px;
 
   @media ${(props) => props.theme.queries.tabletAndBelow} {
@@ -126,6 +126,7 @@ const NavLink = styled.a`
   text-decoration: none;
   color: ${COLORS.gray[900]};
   font-weight: ${WEIGHTS.medium};
+  white-space: nowrap;
 
   &:hover,
   &:focus {
