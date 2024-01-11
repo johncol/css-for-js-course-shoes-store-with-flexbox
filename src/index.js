@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import App from "./components/App";
 import GlobalStyles from "./components/GlobalStyles";
+import { CssVariables } from "./components/GlobalStyles/CssVariables";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 
@@ -12,6 +13,7 @@ ReactDOM.render(
       <App />
     </ThemeProvider>
     <GlobalStyles />
+    <CssVariables />
   </React.StrictMode>,
   document.getElementById("root")
 );

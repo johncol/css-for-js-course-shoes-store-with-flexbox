@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from "../../constants";
 import { formatPrice, pluralize, isNewShoe } from "../../utils";
 import Spacer from "../Spacer";
 
@@ -86,22 +85,24 @@ const Row = styled.div`
 `;
 
 const Name = styled.h3`
-  font-weight: ${WEIGHTS.medium};
-  color: ${COLORS.gray[900]};
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
 `;
 
 const Price = styled.span`
   text-decoration: ${(props) => (props.isOnSale ? "line-through" : "none")};
-  color: ${(props) => (props.isOnSale ? COLORS.gray[700] : COLORS.gray[900])};
+  color: var(
+    ${(props) => (props.isOnSale ? '--color-gray-700' : '--color-gray-900')}
+  );
 `;
 
 const ColorInfo = styled.p`
-  color: ${COLORS.gray[700]};
+  color: var(--color-gray-700);
 `;
 
 const SalePrice = styled.span`
-  font-weight: ${WEIGHTS.medium};
-  color: ${COLORS.primary};
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
 `;
 
 const ItemTag = styled.div`
@@ -113,17 +114,19 @@ const ItemTag = styled.div`
   padding: 0 10px;
   border-radius: 2px;
 
-  font-weight: ${WEIGHTS.bold};
-  color: ${COLORS.white};
-  background-color: ${(props) => {
-    if (props.isOnSale) {
-      return COLORS.primary;
-    }
-    if (props.isNewRelease) {
-      return COLORS.secondary;
-    }
-    return COLORS.gray[700];
-  }};
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(
+    ${(props) => {
+      if (props.isOnSale) {
+        return '--color-primary';
+      }
+      if (props.isNewRelease) {
+        return '--color-secondary';
+      }
+      return '--color-gray-700';
+    }}
+  );
 `;
 
 export default ShoeCard;

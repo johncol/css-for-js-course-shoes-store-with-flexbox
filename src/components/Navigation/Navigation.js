@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLORS, WEIGHTS } from "../../constants";
 import Icon from "../Icon";
 import { useCallback, useEffect } from "react";
 
@@ -82,7 +81,7 @@ const Wrapper = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${COLORS.white};
+    background-color: var(--color-white);
 
     justify-content: stretch;
     align-items: stretch;
@@ -124,12 +123,12 @@ const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: ${COLORS.gray[900]};
-  font-weight: ${WEIGHTS.medium};
+  color: var(--color-gray-900);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
 
   &:hover,
   &:focus {
-    color: ${COLORS.secondary};
+    color: var(--color-secondary);
   }
 `;

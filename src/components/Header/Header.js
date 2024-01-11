@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import { COLORS } from "../../constants";
 import Logo from "../Logo";
 import Navigation from "../Navigation";
 import QuickActionsBar from "../QuickActionsBar";
@@ -30,13 +29,13 @@ const Header = ({ className }) => {
 
 const HeaderSection = styled.header`
   @media ${(props) => props.theme.queries.tabletAndBelow} {
-    border-top: 4px solid ${COLORS.gray[900]};
+    border-top: 4px solid var(--color-gray-900);
   }
 `;
 
 const MainHeader = styled.div`
   padding: 0 32px;
-  border-bottom: 1px solid ${COLORS.gray[300]};
+  border-bottom: 1px solid var(--color-gray-300);
 
   display: flex;
   justify-content: center;

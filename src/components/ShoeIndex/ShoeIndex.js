@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { WEIGHTS } from "../../constants";
-
 import { CurrentBreadcrumbs } from "../Breadcrumbs/CurrentBreadcrumbs";
 import ShoeGrid from "../ShoeGrid";
 import ShoeSidebar from "../ShoeSidebar";
@@ -66,7 +64,7 @@ const HeaderLeftSection = styled.div`
 
 const Title = styled.h2`
   font-size: 1.5rem;
-  font-weight: ${WEIGHTS.medium};
+  font-weight: var(--font-weight-medium);
 `;
 
 const BreadcrumbsHiddenOnDesktop = styled(CurrentBreadcrumbs)`
