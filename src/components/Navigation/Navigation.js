@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Icon from "../Icon";
-import { useCallback, useEffect } from "react";
+import { useModalEffects } from "./useModalEffects";
 
 const links = [
   {
@@ -44,32 +44,6 @@ export const Navigation = ({ className, menuOpenInMobile, onClose }) => {
       </Nav>
     </Wrapper>
   );
-};
-
-const useModalEffects = (menuOpenInMobile, onClose) => {
-  const handleEscape = useCallback(
-    (event) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    },
-    [onClose]
-  );
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleEscape, false);
-    return () => {
-      document.removeEventListener("keydown", handleEscape, false);
-    };
-  }, [handleEscape]);
-
-  useEffect(() => {
-    if (menuOpenInMobile) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [menuOpenInMobile]);
 };
 
 const Wrapper = styled.div`
