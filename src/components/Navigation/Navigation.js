@@ -82,7 +82,7 @@ const CloseButton = styled(Icon).attrs({ id: "close" })`
 const Nav = styled.nav`
   display: flex;
   justify-content: center;
-  gap: 0 clamp(0.5rem, 3vw, 3rem);
+  gap: 0 clamp(1.5rem, 13vw - 8rem, 5rem);
   padding: 26px 16px;
 
   @media ${(props) => props.theme.queries.tabletAndBelow} {
