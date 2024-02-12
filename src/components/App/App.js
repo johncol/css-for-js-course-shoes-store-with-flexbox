@@ -30,6 +30,10 @@ const Main = styled.main`
   padding: 64px 32px;
   position: relative;
   z-index: 1;
+
+  @media ${(props) => props.theme.queries.mobile} {
+    padding: 32px 16px;
+  }
 `;
 
 export default App;
