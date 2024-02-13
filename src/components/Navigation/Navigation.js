@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Icon from "../Icon";
 import { useModalEffects } from "./useModalEffects";
+import { mediaQueries } from "../../mediaQueries";
 
 const links = [
   {
@@ -38,7 +39,8 @@ export const Navigation = ({ className, menuOpenInMobile, onClose }) => {
       <Nav>
         {links.map((link) => (
           <NavLink onClick={onClose} href={link.href} key={link.href}>
-            {link.label}
+            <DefaultContent>{link.label}</DefaultContent>
+            <ContentOnHover>{link.label}</ContentOnHover>
           </NavLink>
         ))}
       </Nav>
@@ -100,9 +102,31 @@ const NavLink = styled.a`
   color: var(--color-gray-900);
   font-weight: var(--font-weight-medium);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+`;
 
-  &:hover,
-  &:focus {
-    color: var(--color-secondary);
+const AnimatedLinkContent = styled.span`
+  display: block;
+
+  ${NavLink}:hover &,
+  ${NavLink}:focus & {
+    transform: translateY(-100%);
   }
+
+  @media ${mediaQueries.noMotionPreference} {
+    transition: transform 400ms ease;
+
+    ${NavLink}:hover &,
+    ${NavLink}:focus & {
+      transition: transform 250ms ease-in-out;
+    }
+  }
+`;
+
+const DefaultContent = styled(AnimatedLinkContent)``;
+
+const ContentOnHover = styled(AnimatedLinkContent)`
+  color: var(--color-secondary);
+  position: absolute;
 `;
