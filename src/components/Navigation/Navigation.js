@@ -34,13 +34,10 @@ export const Navigation = ({ className, menuOpenInMobile, onClose }) => {
   useModalEffects(menuOpenInMobile, onClose);
 
   return (
-    <Wrapper
-      menuOpenInMobile={menuOpenInMobile}
-      className={className}
-      onClick={onClose}
-    >
+    <Wrapper menuOpenInMobile={menuOpenInMobile} className={className}>
+      <Backdrop menuOpenInMobile={menuOpenInMobile} onClick={onClose} />
       <CloseButton onClick={onClose} menuOpenInMobile={menuOpenInMobile} />
-      <NavWrapperOnMobile onClick={(event) => event.stopPropagation()}>
+      <NavWrapperOnMobile>
         <Nav>
           {links.map((link) => (
             <NavLink onClick={onClose} href={link.href} key={link.href}>
@@ -64,6 +61,14 @@ const Wrapper = styled.div`
     bottom: 0;
     right: 0;
     left: 0;
+  }
+`;
+
+const Backdrop = styled.div`
+  @media ${(props) => props.theme.queries.tabletAndBelow} {
+    display: ${(props) => (props.menuOpenInMobile ? "block" : "none")};
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
   }
 `;
