@@ -48,7 +48,7 @@ export const Navigation = ({ className, menuOpenInMobile, onClose }) => {
           {links.map((link) => (
             <NavLink onClick={onClose} href={link.href} key={link.href}>
               <DefaultContent>{link.label}</DefaultContent>
-              <ContentOnHover>{link.label}</ContentOnHover>
+              <ContentOnHover aria-hidden>{link.label}</ContentOnHover>
             </NavLink>
           ))}
         </Nav>
