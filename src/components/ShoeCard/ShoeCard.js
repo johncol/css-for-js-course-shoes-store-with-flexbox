@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled, { keyframes } from "styled-components/macro";
 
 import { formatPrice, pluralize, isNewShoe } from "../../utils";
 import Spacer from "../Spacer";
@@ -60,6 +60,18 @@ const ShoeCard = ({
   );
 };
 
+const Brighten = keyframes`
+  0% {
+    filter: none;
+  }
+  50% {
+    filter: sepia(0.2);
+  }
+  100% {
+    filter: none;
+  }
+`;
+
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
@@ -88,6 +100,7 @@ const Image = styled.img`
     ${Link}:focus & {
       transition: transform 400ms;
       transform: scale(1.05);
+      animation: ${Brighten} 400ms;
     }
   }
 `;
