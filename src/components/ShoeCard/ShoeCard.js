@@ -90,6 +90,7 @@ const Image = styled.img`
   display: block;
   width: 100%;
   border-radius: 5px;
+  will-change: transform;
   
   @media ${(props) => props.theme.queries.noMotionPreference} {
     transform-origin: center 80%;
