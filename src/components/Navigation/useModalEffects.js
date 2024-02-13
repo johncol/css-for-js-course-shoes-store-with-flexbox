@@ -16,12 +16,4 @@ export const useModalEffects = (menuOpenInMobile, onClose) => {
       document.removeEventListener("keydown", handleEscape, false);
     };
   }, [handleEscape]);
-
-  useEffect(() => {
-    if (menuOpenInMobile) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [menuOpenInMobile]);
 };
