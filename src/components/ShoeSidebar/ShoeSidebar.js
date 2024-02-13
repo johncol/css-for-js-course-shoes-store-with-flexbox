@@ -6,7 +6,7 @@ const links = [
   { route: "jordan", label: "Jordan" },
   { route: "running", label: "Running" },
   { route: "basketball", label: "Basketball" },
-  { route: "training", label: "Training &amp; Gym" },
+  { route: "training", label: "Training & Gym" },
   { route: "football", label: "Football" },
   { route: "skateboarding", label: "Skateboarding" },
   { route: "us-football", label: "American Football" },
