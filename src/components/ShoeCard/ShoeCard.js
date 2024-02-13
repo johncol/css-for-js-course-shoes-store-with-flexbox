@@ -71,11 +71,21 @@ const Wrapper = styled.article`
 
 const ImageWrapper = styled.div`
   position: relative;
+  overflow: hidden;
 `;
 
 const Image = styled.img`
+  display: block;
   width: 100%;
   border-radius: 5px;
+  transform-origin: center 80%;
+  transition: transform 600ms;
+
+  ${Link}:hover &,
+  ${Link}:focus & {
+    transition: transform 400ms;
+    transform: scale(1.05);
+  }
 `;
 
 const Row = styled.div`
