@@ -3,6 +3,7 @@ import styled from "styled-components/macro";
 
 import { formatPrice, pluralize, isNewShoe } from "../../utils";
 import Spacer from "../Spacer";
+import { mediaQueries } from "../../mediaQueries";
 
 const ShoeCard = ({
   slug,
@@ -78,13 +79,16 @@ const Image = styled.img`
   display: block;
   width: 100%;
   border-radius: 5px;
-  transform-origin: center 80%;
-  transition: transform 600ms;
+  
+  @media ${mediaQueries.noMotionPreference} {
+    transform-origin: center 80%;
+    transition: transform 600ms;
 
-  ${Link}:hover &,
-  ${Link}:focus & {
-    transition: transform 400ms;
-    transform: scale(1.05);
+    ${Link}:hover &,
+    ${Link}:focus & {
+      transition: transform 400ms;
+      transform: scale(1.05);
+    }
   }
 `;
 
