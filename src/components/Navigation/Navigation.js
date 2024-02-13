@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Icon from "../Icon";
 import { useModalEffects } from "./useModalEffects";
-import { mediaQueries } from "../../mediaQueries";
 
 const links = [
   {
@@ -30,6 +29,13 @@ const links = [
   },
 ];
 
+const animationTiming = {
+  backdropFadeIn: "450ms",
+  navSlideIn: "350ms",
+  navSlideInDelay: "200ms",
+  navContentAppearDelay: "550ms",
+};
+
 export const Navigation = ({ className, menuOpenInMobile, onClose }) => {
   useModalEffects(menuOpenInMobile, onClose);
 
@@ -51,6 +57,24 @@ export const Navigation = ({ className, menuOpenInMobile, onClose }) => {
   );
 };
 
+const FadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const SlideFromTheRight = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+`;
+
 const Wrapper = styled.div`
   position: relative;
 
@@ -71,6 +95,10 @@ const Backdrop = styled.div`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
   }
+
+  @media ${(props) => props.theme.queries.tabletAndBelowAndNoMotionPreference} {
+    animation: ${FadeIn} ${animationTiming.backdropFadeIn} ease;
+  }
 `;
 
 const CloseButton = styled(Icon).attrs({ id: "close" })`
@@ -88,6 +116,12 @@ const CloseButton = styled(Icon).attrs({ id: "close" })`
   @media ${(props) => props.theme.queries.tabletAndBelow} {
     display: ${(props) => (props.menuOpenInMobile ? "block" : "none")};
   }
+
+  @media ${(props) => props.theme.queries.tabletAndBelowAndNoMotionPreference} {
+    opacity: 0;
+    animation: ${FadeIn} ${animationTiming.navSlideIn} ease forwards;
+    animation-delay: ${animationTiming.navContentAppearDelay};
+  }
 `;
 
 const NavWrapperOnMobile = styled.div`
@@ -102,6 +136,12 @@ const NavWrapperOnMobile = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  @media ${(props) => props.theme.queries.tabletAndBelowAndNoMotionPreference} {
+    animation: ${SlideFromTheRight} ${animationTiming.navSlideIn} ease-in-out
+      both;
+    animation-delay: ${animationTiming.navSlideInDelay};
   }
 `;
 
@@ -121,6 +161,7 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled.a`
+  display: block;
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -129,6 +170,38 @@ const NavLink = styled.a`
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+
+  @media ${(props) => props.theme.queries.tabletAndBelowAndNoMotionPreference} {
+    opacity: 0;
+    animation: ${FadeIn} ${animationTiming.navContentAppearDelay} ease-in both;
+
+    --base-delay: 300ms;
+    --delta-delay: 100ms;
+
+    &:nth-of-type(1) {
+      animation-delay: calc(var(--base-delay) + var(--delta-delay));
+    }
+
+    &:nth-of-type(2) {
+      animation-delay: calc(var(--base-delay) + var(--delta-delay) * 1);
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: calc(var(--base-delay) + var(--delta-delay) * 2);
+    }
+
+    &:nth-of-type(4) {
+      animation-delay: calc(var(--base-delay) + var(--delta-delay) * 3);
+    }
+
+    &:nth-of-type(5) {
+      animation-delay: calc(var(--base-delay) + var(--delta-delay) * 4);
+    }
+
+    &:nth-of-type(6) {
+      animation-delay: calc(var(--base-delay) + var(--delta-delay) * 5);
+    }
+  }
 `;
 
 const AnimatedLinkContent = styled.span`
@@ -139,7 +212,7 @@ const AnimatedLinkContent = styled.span`
     transform: translateY(-100%);
   }
 
-  @media ${mediaQueries.noMotionPreference} {
+  @media ${(props) => props.theme.queries.noMotionPreference} {
     transition: transform 400ms ease;
 
     ${NavLink}:hover &,
