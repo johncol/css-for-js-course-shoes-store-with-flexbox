@@ -84,12 +84,12 @@ const Wrapper = styled.article`
 const ImageWrapper = styled.div`
   position: relative;
   overflow: hidden;
+  border-radius: 10px;
 `;
 
 const Image = styled.img`
   display: block;
   width: 100%;
-  border-radius: 5px;
   will-change: transform;
   
   @media ${(props) => props.theme.queries.noMotionPreference} {
