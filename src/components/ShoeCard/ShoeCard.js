@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components/macro";
 
 import { formatPrice, pluralize, isNewShoe } from "../../utils";
 import Spacer from "../Spacer";
-import { mediaQueries } from "../../mediaQueries";
 
 const ShoeCard = ({
   slug,
@@ -92,7 +91,7 @@ const Image = styled.img`
   width: 100%;
   border-radius: 5px;
   
-  @media ${mediaQueries.noMotionPreference} {
+  @media ${(props) => props.theme.queries.noMotionPreference} {
     transform-origin: center 80%;
     transition: transform 600ms;
 
