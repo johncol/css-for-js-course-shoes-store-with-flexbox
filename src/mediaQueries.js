@@ -13,4 +13,6 @@ export const mediaQueries = {
   )}) and (max-width: ${toRems(breakpoints.tablet)})`,
   desktop: `(min-width: ${toRems(breakpoints.tablet + 1)})`,
   tabletAndBelow: `(max-width: ${toRems(breakpoints.tablet)})`,
+  reducedMotionPreference: `(prefers-reduced-motion: reduce)`,
+  noMotionPreference: `(prefers-reduced-motion: no-preference)`,
 };
