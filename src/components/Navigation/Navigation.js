@@ -34,16 +34,22 @@ export const Navigation = ({ className, menuOpenInMobile, onClose }) => {
   useModalEffects(menuOpenInMobile, onClose);
 
   return (
-    <Wrapper menuOpenInMobile={menuOpenInMobile} className={className}>
+    <Wrapper
+      menuOpenInMobile={menuOpenInMobile}
+      className={className}
+      onClick={onClose}
+    >
       <CloseButton onClick={onClose} menuOpenInMobile={menuOpenInMobile} />
-      <Nav>
-        {links.map((link) => (
-          <NavLink onClick={onClose} href={link.href} key={link.href}>
-            <DefaultContent>{link.label}</DefaultContent>
-            <ContentOnHover>{link.label}</ContentOnHover>
-          </NavLink>
-        ))}
-      </Nav>
+      <NavWrapperOnMobile onClick={(event) => event.stopPropagation()}>
+        <Nav>
+          {links.map((link) => (
+            <NavLink onClick={onClose} href={link.href} key={link.href}>
+              <DefaultContent>{link.label}</DefaultContent>
+              <ContentOnHover>{link.label}</ContentOnHover>
+            </NavLink>
+          ))}
+        </Nav>
+      </NavWrapperOnMobile>
     </Wrapper>
   );
 };
@@ -52,16 +58,13 @@ const Wrapper = styled.div`
   position: relative;
 
   @media ${(props) => props.theme.queries.tabletAndBelow} {
+    display: ${(props) => (props.menuOpenInMobile ? "block" : "none")};
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
-    background-color: var(--color-white);
-
-    justify-content: stretch;
-    align-items: stretch;
-    display: ${(props) => (props.menuOpenInMobile ? "flex" : "none")};
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
   }
 `;
 
@@ -75,22 +78,39 @@ const CloseButton = styled(Icon).attrs({ id: "close" })`
   border: none;
   cursor: pointer;
   display: none;
+  z-index: 1;
 
   @media ${(props) => props.theme.queries.tabletAndBelow} {
     display: ${(props) => (props.menuOpenInMobile ? "block" : "none")};
   }
 `;
 
+const NavWrapperOnMobile = styled.div`
+  @media ${(props) => props.theme.queries.tabletAndBelow} {
+    background-color: var(--color-white);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: min(100%, 350px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
+
 const Nav = styled.nav`
-  display: flex;
-  justify-content: center;
-  gap: 0 clamp(1.5rem, 13vw - 8rem, 5rem);
   padding: 26px 16px;
+  display: flex;
+  gap: 0 clamp(1.5rem, 13vw - 8rem, 5rem);
+  justify-content: center;
 
   @media ${(props) => props.theme.queries.tabletAndBelow} {
-    flex: 1;
+    padding-left: 32px;
+    gap: 32px;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-evenly;
   }
 `;
